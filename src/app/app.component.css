@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');
+
+.container {
+    font-family: 'Fredoka', sans-serif;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+.company-name {
+    font-size: 32px;
+}
