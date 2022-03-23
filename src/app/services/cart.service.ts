@@ -9,7 +9,7 @@ export class CartService {
   constructor() {}
 
   getCart(): Cart {
-    return JSON.parse(localStorage.getItem("cart") || '{}');
+    return JSON.parse(localStorage.getItem('cart') || '{}');
   }
 
   addItemsToCart(cart: Cart, cartItem: CartItem): void {
@@ -45,13 +45,11 @@ export class CartService {
 
   private calculateTotalCost(cart: Cart): void {
     let cost = 0;
-    for(let i = 0; i < cart.cartItems.length; i++) {
-      cost += cart.cartItems[i].quantity * cart.cartItems[i].cost;
-    }
+    cart.cartItems.forEach(item => cost += item.quantity * item.cost);
     cart.totalCost = cost;
   }
 
   private saveCart(cart: Cart): void {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
   }
 }

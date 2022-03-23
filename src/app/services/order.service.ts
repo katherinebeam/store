@@ -9,10 +9,10 @@ export class OrderService {
   constructor(private cartService: CartService) { }
 
   saveOrder(order: Order): void {
-    localStorage.setItem("order", JSON.stringify(order));
+    localStorage.setItem('order', JSON.stringify(order));
   }
 
   getOrder(): Order {
-    return JSON.parse(localStorage.getItem("order") || '{}');
+    return JSON.parse(localStorage.getItem('order') || '{}');
   }
 }
