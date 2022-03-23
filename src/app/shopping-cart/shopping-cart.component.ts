@@ -25,9 +25,9 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
   }
-
-  updateCart(cartItem: CartItem) {
-    this.cart = this.cartService.updateCart(cartItem);
+  
+  updateCart(cartItem: CartItem): void {
+    this.cart = this.cartService.updateCart(this.cart, cartItem);
   }
 
   onSubmit(): void {
@@ -38,6 +38,7 @@ export class ShoppingCartComponent implements OnInit {
       creditCardNumber: this.creditCardNumber,
     }
     this.orderService.saveOrder(order);
+    this.cartService.resetCart(this.cart);
     this.router.navigateByUrl('/order-confirmation');
   }
 }

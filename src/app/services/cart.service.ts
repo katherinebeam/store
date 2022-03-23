@@ -5,56 +5,52 @@ import { CartItem } from '../models/cart-item';
 @Injectable({
   providedIn: 'root'
 })
-export class CartService implements OnInit {
-  cart: Cart;
-  constructor() {
-    this.cart = {
-      cartItems: [],
-      totalCost: 0
-   }
-  }
-
-  ngOnInit(): void {
-    this.cart = this.getCart();
-  }
+export class CartService {
+  constructor() {}
 
   getCart(): Cart {
     return JSON.parse(localStorage.getItem("cart") || '{}');
   }
 
-  addItemsToCart(cartItem: CartItem): void {
-    const foundItem = this.cart.cartItems.find(i => i.productId == cartItem.productId);
+  addItemsToCart(cart: Cart, cartItem: CartItem): void {
+    const foundItem = cart.cartItems.find(i => i.productId == cartItem.productId);
     if (foundItem) {
       foundItem.quantity += cartItem.quantity;
     } else {
-      this.cart.cartItems.push(cartItem);
+      cart.cartItems.push(cartItem);
     }
-    this.calculateTotalCost();
-    this.saveCart();
+    this.calculateTotalCost(cart);
+    this.saveCart(cart);
   }
 
-  updateCart(cartItem: CartItem): Cart {
-    const foundItem = this.cart.cartItems.find(i => i.productId == cartItem.productId);
+  updateCart(cart: Cart, cartItem: CartItem): Cart {
+    const foundItem = cart.cartItems.find(i => i.productId == cartItem.productId);
     if (foundItem) {
       foundItem.quantity = cartItem.quantity;
       if (foundItem.quantity === 0) {
-        this.cart.cartItems = this.cart.cartItems.filter(i => i.productId !== foundItem.productId);
+        cart.cartItems = cart.cartItems.filter(i => i.productId !== foundItem.productId);
       }
     }
-    this.calculateTotalCost();
-    this.saveCart();
-    return this.cart;
+    this.calculateTotalCost(cart);
+    this.saveCart(cart);
+    return cart;
   }
 
-  calculateTotalCost() {
+  resetCart(cart: Cart): void {
+    cart.cartItems = [];
+    cart.totalCost = 0;
+    this.saveCart(cart);
+  }
+
+  private calculateTotalCost(cart: Cart): void {
     let cost = 0;
-    for(let i = 0; i < this.cart.cartItems.length; i++) {
-      cost += this.cart.cartItems[i].quantity * this.cart.cartItems[i].cost;
+    for(let i = 0; i < cart.cartItems.length; i++) {
+      cost += cart.cartItems[i].quantity * cart.cartItems[i].cost;
     }
-    this.cart.totalCost = cost;
+    cart.totalCost = cost;
   }
 
-  saveCart() {
-    localStorage.setItem("cart", JSON.stringify(this.cart));
+  private saveCart(cart: Cart): void {
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 }

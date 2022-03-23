@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Cart } from '../models/cart';
 import { CartItem } from '../models/cart-item';
 import { Product } from '../models/product';
 import { CartService } from '../services/cart.service';
@@ -18,6 +19,10 @@ export class ProductItemDetailComponent implements OnInit {
     price: 0,
     url: '',
   };
+  cart: Cart = {
+    cartItems: [],
+    totalCost: 0,
+  }
   productId: number = 0;
 
   quantityOptions = [
@@ -47,6 +52,7 @@ export class ProductItemDetailComponent implements OnInit {
           this.product = foundProduct;
         }
       });
+      this.cart = this.cartService.getCart();
     });
   }
 
@@ -58,6 +64,6 @@ export class ProductItemDetailComponent implements OnInit {
       name: product.name,
       url: product.url,
     }
-    this.cartService.addItemsToCart(cartItem);
+    this.cartService.addItemsToCart(this.cart, cartItem);
   }
 }
