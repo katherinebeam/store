@@ -1,1 +1,9 @@
-<p>order-confirmation works!</p>
+<div class="confirmation-container">
+    <div class="confirmation-items">
+        <h1 class="confirmation-header">Success!🎉</h1>
+        <span class="confirmation-item">Thank you, <b>{{ order.fullName }}</b>!</span>
+        <span class="confirmation-item">Your <b>{{ order.totalCost | currency }}</b> order is confirmed!</span>
+        <span class="confirmation-item">Please allow 1-3 business day(s) for shipping.</span>
+        <button mat-flat-button color="primary" routerLink="/">Back to product list</button>
+    </div>
+</div>

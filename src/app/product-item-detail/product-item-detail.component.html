@@ -1,1 +1,15 @@
-<p>product-details works!</p>
+<div class="detail-container">
+    <img [src]="product.url">
+    <div class="detail-data">
+        <h2 class="detail-item">{{ product.name }}</h2>
+        <p class="detail-item">{{ product.price | currency }}</p>
+        <p class="detail-item">{{ product.description }}</p>
+        <select class="select-input detail-item" [(ngModel)]="quantity">
+            <option *ngFor="let option of quantityOptions" [value]="option.value">{{option.value}}</option>
+        </select>
+        <button mat-flat-button color="primary" class="detail-item" (click)="addToCart(product)">Add to cart</button>
+        <div class="detail-item back-link">
+            <a routerLink="/"><- Back to product list</a>
+        </div>
+    </div>
+</div>

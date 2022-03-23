@@ -23,4 +23,13 @@ img {
   .back-link {
     margin-top: 8px;
   }
+
+  .back-link a {
+    text-decoration: none;
+  }
+
+  .detail-data {
+    display: flex;
+    flex-direction: column;
+  }
   
