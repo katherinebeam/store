@@ -30,6 +30,7 @@ export class CartService {
       if (foundItem.quantity === 0) {
         cart.cartItems = cart.cartItems.filter(i => i.productId !== foundItem.productId);
       }
+      alert('Removed from cart!');
     }
     this.calculateTotalCost(cart);
     this.saveCart(cart);

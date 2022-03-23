@@ -31,5 +31,6 @@ export class ProductListComponent implements OnInit {
 
   addItemsToCart(cartItem: CartItem): void {
     this.cartService.addItemsToCart(this.cart, cartItem);
+    alert('Added to cart!');
   }
 }

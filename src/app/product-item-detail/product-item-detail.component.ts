@@ -65,5 +65,6 @@ export class ProductItemDetailComponent implements OnInit {
       url: product.url,
     }
     this.cartService.addItemsToCart(this.cart, cartItem);
+    alert('Added to cart!');
   }
 }
