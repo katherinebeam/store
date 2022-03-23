@@ -5,7 +5,7 @@
             <div class="cart-item-details">
                 <p>{{ item.name }}</p>
                 <p>{{ item.cost | currency }}</p>
-                <p>Amount: <input [(ngModel)]="item.quantity" type="number" class="number-input" (change)="updateCart(item)"></p>
+                <p>Amount: <input [(ngModel)]="item.quantity" type="number" class="number-input" (ngModelChange)="updateCart(item)"></p>
             </div>
         </div>
         <div>
