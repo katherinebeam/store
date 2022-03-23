@@ -1,4 +1,4 @@
-<div class="cart-container">
+<div class="cart-container" *ngIf="cart.cartItems.length > 0; else emptyCart">
     <div class="cart-panel">
         <div *ngFor="let item of cart.cartItems" class="cart-item">
             <img [src]="item.url">
@@ -32,3 +32,9 @@
         </form>
     </div>
 </div>
+
+<ng-template #emptyCart>
+    <div class="empty-cart-message">
+        <h1>Your cart is empty!</h1>
+    </div>
+</ng-template>
