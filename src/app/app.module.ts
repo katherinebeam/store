@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { DirectivesModule } from './directives/directives.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ShoppingCartComponent,
     ProductItemDetailComponent,
     OrderConfirmationComponent,
-    ProductItemComponent
+    ProductItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +38,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatInputModule,
     HttpClientModule,
     FormsModule,
+    DirectivesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

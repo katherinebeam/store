@@ -13,22 +13,63 @@
         </div>
     </div>
     <div class="cart-panel">
-        <form (ngSubmit)="onSubmit()">
+        <form (ngSubmit)="onSubmit()" #form="ngForm">
             <div class="form-fields">
                 <mat-form-field>
                     <mat-label>Full name</mat-label>
-                    <input matInput type="text" name="fullName" required minlength="3" [(ngModel)]="fullName" placeholder="(minimum 3 characters)">
+                    <input matInput
+                           type="text"
+                           name="fullName"
+                           required
+                           minlength="3"
+                           [(ngModel)]="fullName"
+                           placeholder="(minimum 3 characters)"
+                           #nameField="ngModel">
+                        <mat-error *ngIf="nameField.errors && nameField.errors['required']">
+                            Please provide your full name.
+                        </mat-error>
+                        <mat-error *ngIf="nameField.errors && nameField.errors['minlength']">
+                            Your name must contain at least three characters.
+                        </mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Address</mat-label>
-                    <input matInput type="text" name="address" required minlength="3" [(ngModel)]="address" placeholder="(minimum 3 characters)">
+                    <input matInput
+                           type="text"
+                           name="address"
+                           required
+                           minlength="3"
+                           [(ngModel)]="address"
+                           placeholder="(minimum 3 characters)"
+                           #addressField="ngModel">
+                    <mat-error *ngIf="addressField.errors && addressField.errors['required']">
+                        Please provide your address.
+                    </mat-error>
+                    <mat-error *ngIf="addressField.errors && addressField.errors['minlength']">
+                        Your address must contain at least three characters.
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field>        
                     <mat-label>Credit card number</mat-label>
-                    <input matInput type="text" name="creditCardNumber" required minlength="16" maxlength="16" [(ngModel)]="creditCardNumber" placeholder="(16-digit number)">
+                    <input matInput
+                           type="text"
+                           appOnlyDigits
+                           name="creditCardNumber"
+                           required
+                           minlength="16"
+                           maxlength="16"
+                           [(ngModel)]="creditCardNumber"
+                           placeholder="(16-digit number)"
+                           #creditCardField="ngModel">
+                    <mat-error *ngIf="creditCardField.errors && creditCardField.errors['required']">
+                        Please provide your credit card number.
+                    </mat-error>
+                    <mat-error *ngIf="creditCardField.errors && creditCardField.errors['minlength']">
+                        Your credit card number must be 16 characters.
+                    </mat-error>
                 </mat-form-field>
             </div>
-            <button mat-flat-button color="primary" type="submit">Submit</button>
+            <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
         </form>
     </div>
 </div>
